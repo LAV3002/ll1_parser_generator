@@ -1,0 +1,29 @@
+declaration {
+    E() -> ()
+    Ep() -> ()
+    T() -> ()
+    Tp() -> ()
+    F() -> ()
+    Fp() -> ()
+    K() -> ()
+    Kp() -> ()
+    M() -> ()
+}
+
+E -> T() Ep()
+E -> ""
+Ep -> "or" T() Ep()
+Ep -> "xor" T() Ep()
+Ep -> ""
+T -> F() Tp()
+Tp -> "and" F() Tp()
+Tp -> ""
+F -> Fp() K()
+Fp -> "not"
+Fp -> ""
+K -> M() Kp()
+Kp -> "not in" M()
+Kp -> "in" M()
+Kp -> ""
+M -> "(" E() ")"
+M -> "n"

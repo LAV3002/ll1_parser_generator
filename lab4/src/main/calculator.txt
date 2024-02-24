@@ -1,0 +1,32 @@
+declaration {
+    S() -> (Integer res)
+    E() -> (Integer res)
+    Ep(Integer acc) -> (Integer res)
+    T() -> (Integer res)
+    Tp(Integer acc) -> (Integer res)
+    F() -> (Integer res)
+    DIGIT() -> (String digit)
+    NUMBER() -> (String number)
+}
+
+E -> T() Ep($1.res) {~ $0.res = $2.res; ~}
+Ep -> "+" T() {~ $4.acc = $0.acc + $2.res; ~}  Ep($4.acc) {~ $0.res = $4.res; ~}
+Ep -> "" {~ $0.res = $0.acc; ~}
+T -> F() Tp($1.res) {~ $0.res = $2.res; ~}
+Tp -> "*" F() {~ $4.acc = $0.acc * $2.res; ~} Tp($4.acc) {~ $0.res = $4.res; ~}
+Tp -> "" {~ $0.res = $0.acc; ~}
+F -> NUMBER() {~ $0.res = Integer.valueOf($1.number); ~}
+F -> "(" E() ")" {~ $0.res = $2.res; ~}
+
+NUMBER -> DIGIT() NUMBER() {~ $0.number = $1.digit + $2.number; ~}
+NUMBER -> "" {~ $0.number = ""; ~}
+DIGIT -> "0" {~ $0.digit = "0"; ~}
+DIGIT -> "1" {~ $0.digit = "1"; ~}
+DIGIT -> "2" {~ $0.digit = "2"; ~}
+DIGIT -> "3" {~ $0.digit = "3"; ~}
+DIGIT -> "4" {~ $0.digit = "4"; ~}
+DIGIT -> "5" {~ $0.digit = "5"; ~}
+DIGIT -> "6" {~ $0.digit = "6"; ~}
+DIGIT -> "7" {~ $0.digit = "7"; ~}
+DIGIT -> "8" {~ $0.digit = "8"; ~}
+DIGIT -> "9" {~ $0.digit = "9"; ~}

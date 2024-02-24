@@ -1,0 +1,8 @@
+declaration {
+    A(Integer start) -> (Integer xa, Integer xb)
+    B() -> ()
+}
+
+A -> B() A(4) {~ $0.xa = $2.xa + 1; ~}
+A -> "" {~ $0.xa = 0; ~}
+B -> "b"
